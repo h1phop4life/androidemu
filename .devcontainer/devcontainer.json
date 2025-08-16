@@ -1,0 +1,14 @@
+{
+  "name": "android-x86-qemu-novnc",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {},
+  "forwardPorts": [6080],
+  "postCreateCommand": "chmod +x scripts/*.sh && mkdir -p data",
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-vscode.remote-server"]
+    }
+  }
+}
