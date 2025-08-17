@@ -4,7 +4,7 @@ cd "$(dirname "$0")/.."
 
 DISK="data/android-x86.qcow2"
 ISO="data/android-x86.iso"
-RAM="${RAM:-2048}"   # Değiştirmek istersen: RAM=3072 ./scripts/run-android.sh --install
+RAM="${RAM:-2048}"
 CPUS="${CPUS:-2}"
 
 if [ ! -f "$DISK" ]; then
@@ -21,9 +21,7 @@ if [ "$MODE" = "--install" ]; then
     exit 1
   fi
   echo "[*] Kurulum modunda başlatılıyor..."
-  # VNC :0 -> 5900. noVNC web: 6080 (start-vnc.sh ile açacağız)
   qemu-system-x86_64 \
-    -accel tcg \
     -m "$RAM" -smp "$CPUS" \
     -machine pc,accel=tcg \
     -device VGA \
@@ -35,7 +33,6 @@ if [ "$MODE" = "--install" ]; then
 else
   echo "[*] Normal modda başlatılıyor..."
   qemu-system-x86_64 \
-    -accel tcg \
     -m "$RAM" -smp "$CPUS" \
     -machine pc,accel=tcg \
     -device VGA \
